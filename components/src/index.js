@@ -8,10 +8,9 @@ import CommentDetail from './CommentDetail';
 const App = () => {
     return (
         <div className="ui container comments">
-            <CommentDetail author="Sam" />
-            <CommentDetail author="Sarah"/>
-            <CommentDetail author="Ned" />
-            <CommentDetail author="Keith"/>
+            <CommentDetail author="Sam" timeAgo="Today ar 4:45PM"/>
+            <CommentDetail author="Sarah" timeAgo="Today at 2:00AM"/>
+            <CommentDetail author="Ned" timeAgo="Yesterday at 5:00PM"/>
 
         </div>
     );
