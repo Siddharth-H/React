@@ -2,16 +2,29 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 class App extends React.Component{
+    //specific to JS, not with react; works same as JS or Java constructor
+    constructor(props){ // same props object
+        super(props); // Required* ; to call base class React.Component constructor as it does the setup for react.
+        this.state = { lat: null }; //we put here most relevant data to our component; we will also set default value to the variables
+    }
+
+    //React says we have to define render!! Required**
     render() {
         window.navigator.geolocation.getCurrentPosition(
-            (position) => console.log(position),
-            (err) => console.log(err)
+            position => {
+                this.setState({ lat: position.coords.latitude });
+            },
+            err => console.log(err),
+            // props => {console.log(this.props)}
+
         );
-        return <div>Latitude: </div>;
+        return(
+            <div>Latitude: {this.state.lat} </div>
+        );
     }
 }
 
 ReactDOM.render(
-    <App />,
+    <App/>,
     document.querySelector ('#root')
 )
