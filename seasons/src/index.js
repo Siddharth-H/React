@@ -6,10 +6,6 @@ class App extends React.Component{
     constructor(props){ // same props object
         super(props); // Required* ; to call base class React.Component constructor as it does the setup for react.
         this.state = { lat: null, errorMessage: '' }; //we put here most relevant data to our component; we will also set default value to the variables
-    }
-
-    //React says we have to define render!! Required**
-    render() {
         window.navigator.geolocation.getCurrentPosition(
             position => {
                 this.setState({ lat: position.coords.latitude });
@@ -19,14 +15,18 @@ class App extends React.Component{
                 this.setState({errorMessage: err.message})
             }
             // props => {console.log(this.props)}
+        );
+    }
 
-        );
-        return(
-            <div>
-                Latitude: {this.state.lat}<br />
-                Error: {this.state.errorMessage}
-            </div>
-        );
+    //React says we have to define render!! Required**
+    render() {
+        if(this.state.errorMessage && !this.state.lat){
+            return <div> Error: {this.state.errorMessage}</div>;
+        }
+        if(!this.state.errorMessage && this.state.lat){
+            return <div> latitude: {this.state.lat}</div>;
+        }
+        return <div>Loading Data</div>;
     }
 }
 
