@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SeasonDisplay from './SeasonDisplay';
+import Spinner from './Spinner';
+
 class App extends React.Component{
     state = { lat: null, errorMessage: ''}; //equivalent to defining in constructor
 
@@ -26,7 +28,7 @@ class App extends React.Component{
             // return <div> latitude: {this.state.lat}</div>;
             return <SeasonDisplay lat={this.state.lat}/>
         }
-        return <div>Loading Data</div>;
+        return <Spinner/>;
     }
 }
 
