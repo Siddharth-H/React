@@ -5,16 +5,28 @@ class SearchBar extends React.Component{
         console.log(event.target.value);
     }
     render(){
-        return(
-          <div className="ui segment">
-            <form className="ui form">
-              <div className="field">
-                <label>Image Search</label>
-                <input type="text" onChange={this.onInputChange} />
-              </div>
-            </form>
-          </div>
-        );
+        // return(
+        //   <div className="ui segment">
+        //     <form className="ui form">
+        //       <div className="field">
+        //         <label>Image Search</label>
+        //         <input type="text" onChange={this.onInputChange} />
+        //       </div>
+        //     </form>
+        //   </div>
+        // );
+
+      //Alternate Syntax to write event handler
+      return(
+        <div className="ui segment">
+             <form className="ui form">
+               <div className="field">
+                 <label>Image Search</label>
+                 <input type="text" onChange={(event) => console.log(event.target.value)} />
+               </div>
+             </form>
+           </div>
+      );
     }
 }
 
