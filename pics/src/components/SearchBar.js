@@ -1,32 +1,28 @@
 import React from 'react';
 
 class SearchBar extends React.Component{
-    onInputChange(event){
-        console.log(event.target.value);
-    }
-    render(){
-        // return(
-        //   <div className="ui segment">
-        //     <form className="ui form">
-        //       <div className="field">
-        //         <label>Image Search</label>
-        //         <input type="text" onChange={this.onInputChange} />
-        //       </div>
-        //     </form>
-        //   </div>
-        // );
+    state = {term: ""};
 
-      //Alternate Syntax to write event handler
-      return(
-        <div className="ui segment">
-             <form className="ui form">
-               <div className="field">
-                 <label>Image Search</label>
-                 <input type="text" onChange={(event) => console.log(event.target.value)} />
-               </div>
-             </form>
-           </div>
-      );
+    // onFormSubmit = (event) => { //One way to bind this is by using the arrow function
+    //   event.preventDefault();
+    //   console.log(this.state.term);
+    // };
+
+    onFormSubmit(event){
+      event.preventDefault();
+      console.log(this.state.term);
+    };
+    render(){
+        return(
+          <div className="ui segment">
+            <form onSubmit={event => this.onFormSubmit(event)} className="ui form">
+              <div className="field">
+                <label>Image Search</label>
+                <input type="text" value={this.state.term.toUpperCase()} onChange={e => this.setState({term: e.target.value})} />
+              </div>
+            </form>
+          </div>
+        );
     }
 }
 
