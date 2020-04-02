@@ -4,18 +4,21 @@ class ImageCard extends React.Component{
     constructor(props){
         super(props);
         this.imageRef = React.createRef(); // reference
+        this.state = {spans: 0};
     }
 
     componentDidMount(){
         this.imageRef.current.addEventListener('load', this.setSpans);
     }
     setSpans = () => {
-        console.log(this.imageRef.current.clientHeight);
-    }
+        const height = this.imageRef.current.clientHeight;
+        const spans = Math.ceil(height/10);
+        this.setState({spans});
+    };
     render(){
         const {description, urls} = this.props.image;
         return(
-            <div>
+            <div style={{gridRowEnd: `span ${this.state.spans}`}}>
                 {/* this is a JSX tag */}
                 <img
                     ref={this.imageRef}
